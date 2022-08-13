@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <title>Comments</title>
+        <link rel="stylesheet" type="text/css" href="styles/comments.css">
+        <link href="https://fonts.googleapis.com/css2?family=Jost:wght@500&display=swap" rel="stylesheet">
+    </head>
+
+    <body>
+        <div class="main">
+
+            <div class="create">
+                <form class="form">
+
+                    <div class="form-div">
+                        <label for="comment-restaurant">Restaurant:</label>
+                        <select id="comment-restaurant" name="comment-restaurant"></select>
+                    </div>
+
+                    <div class="form-div">
+                        <label for="comment-rate">Rate:</label>
+                        <input type="number" min="1" max="10" id="comment-rate" name="comment-rate" placeholder="Rate 1-10" required="">
+                    </div>
+
+                    <div class="form-div">
+                        <label for="comment-content">Comment:</label>
+                        <textarea id="comment-content" name="comment-content" placeholder="Comment" required=""></textarea>
+                    </div>
+
+                    <button type="button" id="comment-create-button">Create food</button>
+
+                </form>
+            </div>
+
+            <div id="update" class="update">
+                <form class="form">
+            
+                    <div class="form-div">
+                        <label for="comment-restaurant-update">Restaurant:</label>
+                        <select id="comment-restaurant-update" name="comment-restaurant-update"></select>
+                    </div>
+            
+                    <div class="form-div">
+                        <label for="comment-rate-update">Rate:</label>
+                        <input type="number" min="1" max="10" id="comment-rate-update" name="comment-rate-update" placeholder="Rate 1-10"
+                            required="">
+                    </div>
+            
+                    <div class="form-div">
+                        <label for="comment-content-update">Comment:</label>
+                        <textarea id="comment-content-update" name="comment-content-update" placeholder="Comment" required=""></textarea>
+                    </div>
+            
+                    <div class="form-div">
+                        <button type="button" id="comment-update-button">Update</button>
+                        <button type="button" id="comment-cancel-button">Cancel</button>
+                    </div>
+            
+                </form>
+            </div>
+
+            <div class="table-div">
+                <table border="3">
+                    <thead>
+                        <tr>
+                            <th>Restaurant</th>
+                            <th>User</th>
+                            <th>Rate</th>
+                            <th>Content</th>
+                            <th>Likes</th>
+                            <th>Created at</th>
+                            <th width="100px"></th>
+                            <th width="100px"></th>
+                        </tr>
+                    </thead>
+                    <tbody id="table-body"></tbody>
+                </table>
+            </div>
+        </div>
+
+        <script src="scripts/comment.js"></script>
+    </body>
+
+</html>
