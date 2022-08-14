@@ -26,12 +26,12 @@ function authToken(req, res, next) {
     const token = cookies['token'];
 
     if (token == null) {
-        return res.redirect(301, '/login');
+        return res.redirect(301, '/admin-login');
     }
 
     jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
         if (err) {
-            return res.redirect(301, '/login');
+            return res.redirect(301, '/admin-login');
         }
 
         req.user = user;
@@ -39,15 +39,15 @@ function authToken(req, res, next) {
     });
 }
 
-app.get('/', authToken, (req, res) => {
+app.get('/admin', authToken, (req, res) => {
     res.sendFile('index.html', { root: './static' });
 });
 
-app.get('/login', (req, res) => {
+app.get('/admin-login', (req, res) => {
     res.sendFile('login_register.html', { root: './static' });
 });
 
-app.get('/users', authToken, (req, res) => {
+app.get('/admin-users', authToken, (req, res) => {
     if (req.user.role === 'ADMIN' || req.user.role === 'MODERATOR') {
         res.sendFile('users.html', { root: './static' });
     }
@@ -56,7 +56,7 @@ app.get('/users', authToken, (req, res) => {
     }
 });
 
-app.get('/restaurants', authToken, (req, res) => {
+app.get('/admin-restaurants', authToken, (req, res) => {
     if (req.user.role === 'ADMIN' || req.user.role === 'MODERATOR') {
         res.sendFile('restaurants.html', { root: './static' });
     }
@@ -65,7 +65,7 @@ app.get('/restaurants', authToken, (req, res) => {
     }
 });
 
-app.get('/foods', authToken, (req, res) => {
+app.get('/admin-foods', authToken, (req, res) => {
     if (req.user.role === 'ADMIN' || req.user.role === 'MODERATOR' || req.user.role === 'CLIENT') {
         res.sendFile('foods.html', { root: './static' });
     }
@@ -74,13 +74,17 @@ app.get('/foods', authToken, (req, res) => {
     }
 });
 
-app.get('/comments', authToken, (req, res) => {
+app.get('/admin-comments', authToken, (req, res) => {
     if (req.user.role === 'ADMIN' || req.user.role === 'MODERATOR' || req.user.role === 'CLIENT') {
         res.sendFile('comments.html', { root: './static' });
     }
     else {
         res.status(401).send('Not authorized');
     }
+});
+
+app.get('/', authToken, (req, res) => {
+    res.status(200).send('Not implmenet yet!')
 });
 
 app.use(express.static(path.join(__dirname, 'static')));
