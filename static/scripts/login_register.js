@@ -29,7 +29,7 @@ function signUp() {
             else {
                 alert('Successfully registered');
                 document.cookie = `token=${resUser.token};SameSite=Lax`;
-                window.location.href = '/admin';
+                window.location.href = 'index.html';
             }
         });
 }
@@ -54,7 +54,7 @@ function login() {
                 }
                 else {
                     document.cookie = `token=${resUser.token};SameSite=Lax`;
-                    window.location.href = '/admin';
+                    window.location.href = 'index.html';
                 }
             });
 }

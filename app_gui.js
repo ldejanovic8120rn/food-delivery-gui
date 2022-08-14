@@ -66,7 +66,7 @@ app.get('/admin-restaurants', authToken, (req, res) => {
 });
 
 app.get('/admin-foods', authToken, (req, res) => {
-    if (req.user.role === 'ADMIN' || req.user.role === 'MODERATOR' || req.user.role === 'CLIENT') {
+    if (req.user.role === 'ADMIN' || req.user.role === 'MODERATOR') {
         res.sendFile('foods.html', { root: './static' });
     }
     else {
@@ -75,7 +75,7 @@ app.get('/admin-foods', authToken, (req, res) => {
 });
 
 app.get('/admin-comments', authToken, (req, res) => {
-    if (req.user.role === 'ADMIN' || req.user.role === 'MODERATOR' || req.user.role === 'CLIENT') {
+    if (req.user.role === 'ADMIN' || req.user.role === 'MODERATOR') {
         res.sendFile('comments.html', { root: './static' });
     }
     else {
@@ -83,7 +83,7 @@ app.get('/admin-comments', authToken, (req, res) => {
     }
 });
 
-app.get('/', authToken, (req, res) => {
+app.get('/', (req, res) => {
     res.status(200).send('Not implmenet yet!')
 });
 
