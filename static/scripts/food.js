@@ -147,9 +147,11 @@ function deleteFood(foodId) {
             'Authorization': 'Bearer ' + token
         },
     })
+        .then(response => response.json())
         .then(res => {
-            if (res.json().message) {
-                alert(res.json().message);
+            
+            if (res.message) {
+                alert(res.message);
             }
             else {
                 let trDelete = document.getElementById(`table-row-${foodId}`);
