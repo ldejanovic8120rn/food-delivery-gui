@@ -1,6 +1,9 @@
 const express = require('express');
 const path = require('path');
 const jwt = require('jsonwebtoken');
+
+const history = require('connect-history-api-fallback');
+
 require('dotenv').config();
 
 const app = express();
@@ -83,11 +86,13 @@ app.get('/admin-comments', authToken, (req, res) => {
     }
 });
 
-app.get('/', (req, res) => {
-    res.status(200).send('Not implmenet yet!')
-});
+const staticMdl = express.static(path.join(__dirname, 'dist'));
+
+app.use(staticMdl);
+app.use(history({ index: '/index.html' }));
+app.use(staticMdl);
 
 app.use(express.static(path.join(__dirname, 'static')));
-app.listen({ port: 8080 }, async () => {
+app.listen({ port: process.env.PORT || 8080 }, async () => {
     console.log('GUI server started!')
 });
